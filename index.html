@@ -1,140 +1,169 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rep Count Pro</title>
+  <meta name="apple-itunes-app" content="app-id=6742687397">
+  <title>Rep Count Pro - Download</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-    .card{background:#fff;border-radius:24px;padding:40px 28px;max-width:420px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-    .icon{font-size:80px;margin-bottom:20px}
-    h1{font-size:28px;color:#1a1a1a;margin-bottom:8px;font-weight:700}
-    .subtitle{color:#666;font-size:16px;margin-bottom:32px}
-    
-    /* Большая заметная кнопка */
-    .safari-btn{
-      display:block;
-      width:100%;
-      padding:20px;
-      background:#007aff;
-      color:#fff;
-      border-radius:16px;
-      text-decoration:none;
-      font-weight:700;
-      font-size:18px;
-      margin-bottom:20px;
-      box-shadow:0 8px 24px rgba(0,122,255,0.4);
-      transition:transform 0.2s
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px
     }
-    .safari-btn:active{transform:scale(0.96)}
+    .container{
+      background:#fff;
+      border-radius:28px;
+      padding:48px 32px;
+      max-width:440px;
+      text-align:center;
+      box-shadow:0 20px 80px rgba(0,0,0,0.3)
+    }
+    .app-icon{
+      width:120px;
+      height:120px;
+      background:linear-gradient(135deg,#667eea,#764ba2);
+      border-radius:26px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:64px;
+      margin:0 auto 24px;
+      box-shadow:0 12px 40px rgba(102,126,234,0.4)
+    }
+    h1{
+      font-size:32px;
+      font-weight:700;
+      color:#1a1a1a;
+      margin-bottom:8px
+    }
+    .subtitle{
+      font-size:17px;
+      color:#666;
+      margin-bottom:40px;
+      line-height:1.4
+    }
     
-    /* Инструкция */
+    /* Instruction box */
     .instruction{
-      background:#fff9e6;
-      border-left:4px solid #ffc107;
-      padding:20px;
-      border-radius:12px;
+      background:linear-gradient(to bottom,#fff9e6,#fff4d6);
+      border:2px solid #ffc107;
+      border-radius:20px;
+      padding:28px 24px;
       text-align:left;
-      margin-top:24px
+      margin-bottom:24px
     }
     .instruction-title{
+      font-size:20px;
       font-weight:700;
       color:#f57c00;
-      margin-bottom:12px;
-      font-size:16px
+      margin-bottom:16px;
+      text-align:center
     }
     .steps{
-      color:#666;
-      font-size:15px;
-      line-height:1.8;
-      padding-left:20px
+      list-style:none;
+      counter-reset:step-counter
     }
-    .steps li{margin-bottom:8px}
-    .steps strong{color:#f57c00}
+    .steps li{
+      counter-increment:step-counter;
+      position:relative;
+      padding-left:48px;
+      margin-bottom:20px;
+      font-size:16px;
+      line-height:1.6;
+      color:#333
+    }
+    .steps li:before{
+      content:counter(step-counter);
+      position:absolute;
+      left:0;
+      top:0;
+      width:32px;
+      height:32px;
+      background:#007aff;
+      color:#fff;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:15px
+    }
+    .steps strong{
+      color:#007aff;
+      font-weight:600
+    }
     
-    /* Визуальная подсказка */
-    .visual-hint{
-      margin-top:20px;
-      padding:16px;
+    /* Visual hint */
+    .hint{
       background:#f5f5f7;
-      border-radius:12px
+      border-radius:16px;
+      padding:20px;
+      font-size:14px;
+      color:#666;
+      line-height:1.6
     }
-    .visual-hint img{
-      max-width:100%;
-      border-radius:8px;
-      margin-top:8px
+    .hint strong{
+      color:#1a1a1a
+    }
+    
+    /* Loading animation */
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .container{
+      animation:fadeIn 0.6s ease-out
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="icon">💪</div>
+  <div class="container">
+    <div class="app-icon">💪</div>
+    
     <h1>Rep Count Pro</h1>
-    <p class="subtitle">Счётчик повторений для тренировок</p>
+    <p class="subtitle">AI-Powered Workout Counter</p>
     
-    <!-- Главная кнопка - просто копирует ссылку -->
-    <a href="#" class="safari-btn" id="copyBtn">
-      📋 Скопировать ссылку
-    </a>
-    
-    <!-- Инструкция -->
     <div class="instruction">
-      <div class="instruction-title">🎵 Как установить из TikTok:</div>
+      <div class="instruction-title">🎵 Open in Safari to Download</div>
       <ol class="steps">
-        <li>Нажмите кнопку <strong>"Скопировать ссылку"</strong> выше</li>
-        <li>Нажмите кнопку <strong>"..."</strong> (три точки) в правом верхнем углу TikTok</li>
-        <li>Выберите <strong>"Открыть в Safari"</strong></li>
-        <li>В Safari вставьте скопированную ссылку в адресную строку</li>
-        <li>Готово! Откроется App Store</li>
+        <li>Tap the <strong>"..."</strong> button in the top right corner</li>
+        <li>Select <strong>"Open in Safari"</strong></li>
+        <li>App Store will open automatically</li>
       </ol>
     </div>
     
-    <!-- Визуальная подсказка где найти кнопку -->
-    <div class="visual-hint">
-      <p style="font-size:13px;color:#666;margin-bottom:8px">
-        <strong>Где найти кнопку "..."?</strong>
-      </p>
-      <p style="font-size:13px;color:#999">
-        Правый верхний угол экрана TikTok →<br>
-        Три точки → "Открыть в Safari"
-      </p>
+    <div class="hint">
+      <strong>📱 Why Safari?</strong><br>
+      TikTok's browser blocks App Store links. Opening in Safari takes just 2 taps and works perfectly!
     </div>
   </div>
 
   <script>
-    const appStoreLink = 'https://apps.apple.com/app/id6742687397';
-    const copyBtn = document.getElementById('copyBtn');
+    // Автоматический редирект в App Store (работает только в Safari)
+    const appStoreUrl = 'https://apps.apple.com/app/id6742687397';
+    const deepLink = 'itms-apps://apps.apple.com/app/id6742687397';
     
-    copyBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      // Копируем ссылку в буфер обмена
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(appStoreLink).then(() => {
-          // Меняем текст кнопки
-          copyBtn.textContent = '✅ Ссылка скопирована!';
-          copyBtn.style.background = '#34c759';
-          
-          // Показываем alert с инструкцией
-          setTimeout(() => {
-            alert('✅ Ссылка скопирована!\n\nТеперь:\n1. Нажмите "..." в углу TikTok\n2. Выберите "Открыть в Safari"\n3. Вставьте ссылку в Safari');
-          }, 300);
-          
-          // Возвращаем текст обратно
-          setTimeout(() => {
-            copyBtn.textContent = '📋 Скопировать ссылку';
-            copyBtn.style.background = '#007aff';
-          }, 3000);
-        }).catch(() => {
-          // Fallback если clipboard API не работает
-          alert('Скопируйте эту ссылку:\n\n' + appStoreLink);
-        });
-      } else {
-        // Для старых браузеров
-        alert('Скопируйте эту ссылку:\n\n' + appStoreLink);
-      }
-    });
+    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome|CriOS|FxiOS/.test(navigator.userAgent);
+    
+    // Если пользователь открыл в Safari - автоматически перекидываем в App Store
+    if (isIOS && isSafari) {
+      setTimeout(() => {
+        // Пробуем deep link
+        window.location.href = deepLink;
+        
+        // Fallback на обычную ссылку
+        setTimeout(() => {
+          window.location.href = appStoreUrl;
+        }, 1500);
+      }, 1000);
+    }
   </script>
 </body>
 </html>
