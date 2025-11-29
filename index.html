@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Открыть в Safari — App Store</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;}
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:linear-gradient(180deg,#f7fbff,#eef6ff);color:#0b1222}
+    .card{width:min(760px,92vw);background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(12,20,40,0.08);padding:28px;max-width:680px}
+    h1{font-size:20px;margin:0 0 10px}
+    p{margin:0 0 18px;color:#334155}
+    .btn{display:inline-block;padding:14px 18px;border-radius:12px;background:#007aff;color:white;font-weight:600;text-decoration:none;box-shadow:0 6px 18px rgba(0,122,255,0.18)}
+    .btn--ghost{background:transparent;color:#0b1222;border:1px solid #e6eefc;padding:10px 14px;margin-left:12px}
+    .note{margin-top:14px;color:#64748b;font-size:13px}
+    .brand{height:56px;width:56px;border-radius:12px;background:linear-gradient(135deg,#fff,#f2f9ff);display:flex;align-items:center;justify-content:center;margin-right:14px}
+    .row{display:flex;align-items:center}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="row">
+      <div class="brand">📱</div>
+      <div>
+        <h1>Открыть приложение в App Store</h1>
+        <p>Если ты открыл эту страницу из TikTok — нажми кнопку «Открыть в Safari», чтобы Safari открыл страницу App Store.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:18px">
+      <!-- Основная кнопка: клик открывает ссылку в новой вкладке (TikTok откроет Safari) -->
+      <a id="openSafari" class="btn" href="https://apps.apple.com/app/id6742687397" target="_blank" rel="noopener noreferrer">Открыть в Safari</a>
+
+      <!-- Альтернативная кнопка, на случай если нужен прямой переход в App Store -->
+      <a id="openAppStore" class="btn btn--ghost" href="https://apps.apple.com/app/id6742687397">Открыть App Store (если доступно)</a>
+
+      <div class="note">Если ничего не произошло: удержи кнопку и выбери «Открыть в Safari», либо скопируй ссылку и открой в Safari вручную.</div>
+    </div>
+
+    <script>
+      // На мобильных браузерах пользователь-клик должен открыть ссылку в Safari из TikTok WebView.
+      // Добавляем небольшую обработку для лучшего UX.
+      document.getElementById('openSafari').addEventListener('click', function (e) {
+        // Попытка открыть в новой вкладке — это пользовательское действие, TikTok обычно переводит в Safari.
+        // Для страховки: запускаем window.open и даём пользователю подсказку, если ничего не случилось.
+        try {
+          window.open(this.href, '_blank');
+        } catch (err) {
+          // ничего — просто позволим ссылке работать как обычно
+        }
+
+        // Через 900ms показываем подсказку, если окно не было открыто.
+        setTimeout(() => {
+          // Некоторые WebView блокируют автоматическое открытие — показываем небольшое уведомление в консоли.
+          // Можно здесь добавить визуальную подсказку, но держим страницу простой.
+          console.log('Если страница не открылась — удержи кнопку и выбери «Открыть в Safari».');
+        }, 900);
+      });
+    </script>
+  </div>
+</body>
+</html>
