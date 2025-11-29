@@ -3,76 +3,51 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Скачать приложение</title>
+  <meta http-equiv="refresh" content="0;url=https://apps.apple.com/app/id6742687397">
+  <title>Переход в App Store</title>
   <style>
-    :root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-    body{display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#f5f5f7;color:#1d1d1f}
-    .card{width:min(400px,90vw);background:#fff;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,0.1);padding:32px;text-align:center}
-    h1{font-size:24px;margin:0 0 12px;font-weight:600}
-    p{margin:0 0 24px;color:#6e6e73;font-size:15px;line-height:1.5}
-    .btn{display:block;width:100%;padding:16px;border-radius:12px;background:#007aff;color:#fff;font-weight:600;text-decoration:none;margin-bottom:12px;font-size:16px}
-    .btn:active{opacity:0.8}
-    .note{margin-top:20px;padding:16px;background:#f5f5f7;border-radius:10px;font-size:13px;color:#86868b;line-height:1.4}
-    .icon{font-size:48px;margin-bottom:16px}
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;font-family:-apple-system,sans-serif;background:#f5f5f7;text-align:center}
+    .card{background:#fff;border-radius:18px;padding:40px;max-width:400px;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+    h1{font-size:24px;margin:0 0 16px;color:#1d1d1f}
+    p{color:#6e6e73;margin:0 0 24px;line-height:1.5}
+    .btn{display:inline-block;padding:14px 32px;background:#007aff;color:#fff;border-radius:12px;text-decoration:none;font-weight:600}
+    .spinner{border:3px solid #f3f3f3;border-top:3px solid #007aff;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;margin:0 auto 20px}
+    @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="icon">📱</div>
-    <h1>Открыть приложение</h1>
-    <p>Нажмите кнопку ниже, чтобы перейти в App Store</p>
+    <div class="spinner"></div>
+    <h1>Переход в App Store...</h1>
+    <p>Если переход не произошёл автоматически, нажмите кнопку ниже</p>
+    <a href="https://apps.apple.com/app/id6742687397" class="btn">Открыть App Store</a>
     
-    <a id="mainBtn" class="btn" href="#">Открыть App Store</a>
-    
-    <div class="note">
-      <strong>Не работает?</strong><br>
-      1. Нажмите кнопку "..." в правом верхнем углу<br>
-      2. Выберите "Открыть в Safari"<br>
-      3. Повторите попытку
-    </div>
+    <p style="margin-top:24px;font-size:13px;color:#86868b">
+      <strong>В TikTok не работает?</strong><br>
+      Нажмите "..." → "Открыть в Safari"
+    </p>
   </div>
 
   <script>
-    const appId = '6742687397';
-    const appStoreUrl = `https://apps.apple.com/app/id${appId}`;
-    const deepLink = `itms-apps://apps.apple.com/app/id${appId}`;
+    // Множественные попытки открыть App Store
+    const appStoreUrl = 'https://apps.apple.com/app/id6742687397';
+    const deepLink = 'itms-apps://apps.apple.com/app/id6742687397';
     
-    // Определяем, находимся ли в TikTok WebView
-    const isTikTok = /tiktok/i.test(navigator.userAgent);
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // Попытка 1: Deep link через невидимый iframe
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = deepLink;
+    document.body.appendChild(iframe);
     
-    const btn = document.getElementById('mainBtn');
+    // Попытка 2: Прямой редирект
+    setTimeout(() => {
+      window.location.href = appStoreUrl;
+    }, 100);
     
-    if (isTikTok && isIOS) {
-      // В TikTok на iOS - используем комбинированный подход
-      btn.href = appStoreUrl; // Обычная HTTPS ссылка
-      
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Попытка 1: Deep link (может не сработать в TikTok)
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = deepLink;
-        document.body.appendChild(iframe);
-        
-        // Попытка 2: Открыть в новой вкладке (заставит TikTok предложить Safari)
-        setTimeout(() => {
-          window.location.href = appStoreUrl;
-        }, 500);
-        
-        // Попытка 3: Если всё ещё здесь, показываем инструкцию
-        setTimeout(() => {
-          alert('Нажмите кнопку "..." в правом верхнем углу и выберите "Открыть в Safari"');
-        }, 2000);
-      });
-    } else if (isIOS) {
-      // В обычном Safari - прямая ссылка на App Store
-      btn.href = appStoreUrl;
-    } else {
-      // На других платформах
-      btn.href = appStoreUrl;
-    }
+    // Попытка 3: window.open (для некоторых браузеров)
+    setTimeout(() => {
+      window.open(appStoreUrl, '_blank');
+    }, 500);
   </script>
 </body>
 </html>
